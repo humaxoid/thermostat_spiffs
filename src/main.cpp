@@ -11,16 +11,14 @@
 Adafruit_BME280 bme;                   // Подключаем датчик в режиме I2C
 
 // Задаем сетевые настройки
-const char* ssid = "Satman_WLAN";
-const char* password = "9uthfim8";
-IPAddress local_IP(192, 168, 11, 68);  // Задаем статический IP-адрес:
-IPAddress gateway(192, 168, 11, 102);  // Задаем IP-адрес сетевого шлюза:
+const char* ssid = "*******";
+const char* password = "*********";
+IPAddress local_IP(192, 168, 1, 68);   // Задаем статический IP-адрес:
+IPAddress gateway(192, 168, 1, 102);   // Задаем IP-адрес сетевого шлюза:
 IPAddress subnet(255, 255, 255, 0);    // Задаем маску сети:
 IPAddress primaryDNS(8, 8, 8, 8);      // Основной ДНС (опционально)
 IPAddress secondaryDNS(8, 8, 4, 4);    // Резервный ДНС (опционально)
 AsyncWebServer server(80);             // Создаем сервер через 80 порт
-//AsyncWebSocket ws("/ws");              // Создаем объект WebSocket
-
 
 // Default Threshold Temperature Value
 String inputMessage = "25.0";          // пороговое значение температуры
@@ -33,7 +31,7 @@ void notFound(AsyncWebServerRequest *request) {
   request->send(404, "text/plain", "Not found");
 }
 
-// BME280 - Универсальный датчик **********************
+// BME280 - Универсальный датчик
 String getTemperature2() {
   float IN4 = bme.readTemperature()-1.04;
   Serial.print("BME280- Температура: ");
@@ -57,6 +55,7 @@ String getHumidity() {
   Serial.println(" %");
   return String(IN6);
 }
+
 //*****************************************************
 
 //Заменяем placeholder значениями BME280
@@ -98,7 +97,7 @@ void setup() {
   Serial.print("ESP IP Address: http://");
   Serial.println(WiFi.localIP());
   
-// Установите GPIO 2 в качестве выходного сигнала и установите его на НИЗКИЙ уровень при первом запуске ESP.    
+// Установите GPIO 32 в качестве выходного сигнала и установите его на НИЗКИЙ уровень при первом запуске ESP.    
   pinMode(32, OUTPUT);
   digitalWrite(32, LOW);
   
