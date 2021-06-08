@@ -2,7 +2,6 @@
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <Wire.h>
-#include <OneWire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 #include <SPIFFS.h>
@@ -103,7 +102,7 @@ void setup() {
   
   // Инициализация и запуск датчика BME280
   if (!bme.begin(0x76)) {
-	Serial.println("Не обнаружен датчик BME280, проверьте соеденение!");
+	Serial.println("Не обнаружен датчик BME280, проверьте соединение!");
     while (1);
  }
   
