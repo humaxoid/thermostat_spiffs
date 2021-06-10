@@ -143,8 +143,9 @@ void setup() {
     }
     Serial.println(inputMessage);
     Serial.println(inputMessage2);
-// После отправки значений в форме отображается новая страница с сообщением, что запрос был успешно отправлен в ESP32 со ссылкой для возврата на домашнюю страницу.
-    request->send(200, "text/html", "HTTP GET request sent to your ESP.<br><a href=\"/\">Return to Home Page</a>");
+	  
+// После отправки значений в форме обновить страницу
+ request->send(SPIFFS, "/index.html", "text/html", false, processor);
   });
   server.onNotFound(notFound);
 // Запуск веб сервера
